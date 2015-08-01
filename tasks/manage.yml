@@ -2,12 +2,15 @@
 
 - name: Managing files
   file:
-    follow: "{{ item.follow if item.follow is defined else omit }}"
-    force:  "{{ item.force if item.force is defined else omit }}"
-    group: "{{ item.group if item.group is defined else omit }}"
-    mode: "{{ item.mode if item.mode is defined else omit }}"
-    owner: "{{ item.owner if item.owner is defined else omit }}"
-    path: "{{ item.path }}"
-    src: "{{ item.src if item.src is defined else omit }}"
-    state: "{{ item.state if item.state is defined else omit }}"
-  with_items: files
+    path:   "{{ item.path }}"
+    follow: "{{ item.follow | default(omit) }}"
+    force:  "{{ item.force  | default(omit) }}"
+    group:  "{{ item.group  | default(omit) }}"
+    mode:   "{{ item.mode   | default(omit) }}"
+    owner:  "{{ item.owner  | default(omit) }}"
+    src:    "{{ item.src    | default(omit) }}"
+    state:  "{{ item.state  | default(omit) }}"
+  with_flattened:
+    - files
+    - files_group_list
+    - files_host_list

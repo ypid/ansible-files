@@ -1,12 +1,17 @@
 ---
+
 # For more information about default variables see:
 # http://www.ansibleworks.com/docs/playbooks_variables.html#id26
 #
+# list of file definitions (http://docs.ansible.com/file_module.html)
+files: []
 # files:
 #   - path: /etc/foo.conf
 #     state: touch
 #     mode: "u+rw,g-wx,o-rwx"
-#
 
-# list of file definitions (http://docs.ansible.com/file_module.html)
-files: files
+## "Host group" files list
+files_group_list: []
+
+## "Host" files list
+files_host_list: []
